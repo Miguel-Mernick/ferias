@@ -1,12 +1,11 @@
 <?php
 session_start();
-include('conexao.php');  // Incluindo a conexão com o banco de dados
+include('conexao.php');
 
 if ($_SERVER['REQUEST_METHOD'] == 'POST') {
     $email = $_POST['email'];
     $senha = $_POST['senha'];
 
-    // Verificando se o email já existe no banco de dados
     $sql = "SELECT * FROM usuarios WHERE email = :email";
     $stmt = $pdo->prepare($sql);
     $stmt->bindParam(':email', $email);
@@ -15,19 +14,16 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
     if ($stmt->rowCount() > 0) {
         $erro = "Email já está em uso. Tente outro.";
     } else {
-        // Criptografando a senha com bcrypt
         $senha_hash = password_hash($senha, PASSWORD_DEFAULT);
 
-        // Inserindo o novo usuário no banco
         $sql = "INSERT INTO usuarios (email, senha) VALUES (:email, :senha)";
         $stmt = $pdo->prepare($sql);
         $stmt->bindParam(':email', $email);
         $stmt->bindParam(':senha', $senha_hash);
 
         if ($stmt->execute()) {
-            // Registro bem-sucedido, fazendo login automático
-            $_SESSION['usuario_id'] = $pdo->lastInsertId();  // Armazena o ID do novo usuário
-            header('Location: index.php');  // Redireciona para a página principal
+            $_SESSION['usuario_id'] = $pdo->lastInsertId();
+            header('Location: index.php');
             exit();
         } else {
             $erro = "Erro ao registrar o usuário.";

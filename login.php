@@ -1,10 +1,9 @@
 <?php
 session_start();
-include('conexao.php');  // Incluindo a conexão com o banco de dados
+include('conexao.php'); 
 
-// Verificar se o usuário já está logado
 if (isset($_SESSION['usuario_id'])) {
-    header('Location: index.php');  // Redireciona para a página principal
+    header('Location: index.php'); 
     exit();
 }
 
@@ -12,7 +11,6 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
     $email = $_POST['email'];
     $senha = $_POST['senha'];
 
-    // Verificando o usuário no banco
     $sql = "SELECT * FROM usuarios WHERE email = :email";
     $stmt = $pdo->prepare($sql);
     $stmt->bindParam(':email', $email);
@@ -21,8 +19,8 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
     $usuario = $stmt->fetch(PDO::FETCH_ASSOC);
 
     if ($usuario && password_verify($senha, $usuario['senha'])) {
-        $_SESSION['usuario_id'] = $usuario['id'];  // Armazena o ID do usuário na sessão
-        header('Location: index.php');  // Redireciona para a página inicial
+        $_SESSION['usuario_id'] = $usuario['id'];
+        header('Location: index.php'); 
         exit();
     } else {
         $erro = "Email ou senha inválidos.";
