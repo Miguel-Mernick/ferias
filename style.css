@@ -1,3 +1,4 @@
+/* Estilo global */
 body {
     background-color: #ebf7f6;
     font-family: Arial, sans-serif;
@@ -5,17 +6,46 @@ body {
     padding: 0;
 }
 
+/* Estilo para a barra de navegação */
 nav {
     background-color: #60AEB6;
     color: #ebf7f6;
-    text-align: center;
-    padding: 20px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 15px;
 }
 
 nav h1 {
     margin: 0;
 }
 
+/* Estilo para a lista de links */
+nav ul {
+    list-style: none;
+    margin: 0;
+    padding: 0;
+}
+
+nav ul li {
+    display: inline-block;
+    margin-left: 20px;
+}
+
+nav ul li a {
+    color: #ebf7f6;
+    font-size: 18px;
+    text-decoration: none;
+}
+
+nav a img {
+    width: 30px;
+    height: 30px;
+    vertical-align: middle;
+    margin-right: 10px;
+}
+
+/* Estilo para os contêineres de imagens */
 .container {
     display: flex;
     justify-content: space-around;
@@ -24,29 +54,29 @@ nav h1 {
     flex-wrap: wrap;
 }
 
-
 .imagem {
     text-align: center;
     width: 30%;
-    margin-bottom: 20px; 
-    position: relative; 
+    margin-bottom: 20px;
+    position: relative;
 }
 
 .imagem img {
     width: 100%;
-    height: 200px; 
-    object-fit: cover; 
+    height: 200px;
+    object-fit: cover;
     border-radius: 8px;
     transition: transform 0.3s ease-in-out;
 }
 
+/* Estilo da descrição das imagens */
 .descricao {
-    display: none; 
+    display: none;
     position: absolute;
     bottom: 10px;
     left: 50%;
     transform: translateX(-50%);
-    background-color: rgba(0, 0, 0, 0.6); 
+    background-color: rgba(0, 0, 0, 0.6);
     color: white;
     padding: 5px 10px;
     border-radius: 5px;
@@ -54,7 +84,7 @@ nav h1 {
 }
 
 .imagem:hover img {
-    transform: scale(1.05); 
+    transform: scale(1.05);
 }
 
 .imagem:hover .descricao {
@@ -67,11 +97,68 @@ nav h1 {
     margin-top: 10px;
 }
 
+/* Estilo para o formulário de login e registro */
+.form-container {
+    text-align: center;
+    padding: 20px;
+}
+
+form {
+    max-width: 400px;
+    margin: 0 auto;
+    background-color: #fff;
+    padding: 20px;
+    border-radius: 8px;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+}
+
+label {
+    font-size: 18px;
+}
+
+input[type="email"], input[type="password"] {
+    width: 95%;
+    padding: 10px;
+    margin: 10px 0;
+    border-radius: 5px;
+    border: 1px solid #ccc;
+}
+
+button {
+    padding: 10px 20px;
+    background-color: #60AEB6;
+    color: #fff;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    font-size: 16px;
+}
+
+button:hover {
+    background-color: #4a8d95;
+}
+
+/* Estilo para o footer */
+footer {
+    text-align: center;
+    margin-top: 20px;
+}
+
+footer a {
+    color: #60AEB6;
+    text-decoration: none;
+}
+
+footer a:hover {
+    text-decoration: underline;
+}
+
+/* Estilo responsivo */
 @media (max-width: 768px) {
     .imagem {
         width: 100%;
     }
     .container {
-        justify-content: center; 
+        justify-content: center;
     }
 }
